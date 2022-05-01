@@ -5,6 +5,7 @@ import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
   user_id: string;
+
   avatar_file: string;
 }
 
@@ -23,6 +24,7 @@ class UpdateUserAvatarUseCase {
     }
 
     user.avatar = avatar_file;
+
     await this.usersRepository.create(user);
   }
 }
