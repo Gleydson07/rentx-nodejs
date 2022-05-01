@@ -7,21 +7,28 @@ import { ImportCategoryController } from "../modules/cars/useCases/importCategor
 import { ListCategoryController } from "../modules/cars/useCases/listCategories/ListCategoryController";
 
 const createCategoryController = new CreateCategoryController();
+
 const importCategoryController = new ImportCategoryController();
+
 const listCategoryController = new ListCategoryController();
 
 const categoriesRoutes = Router();
 
 const upload = multer({
-  dest: "./temp",
+  dest: "./tmp",
 });
 
 categoriesRoutes.post("/", ensureAutheticated, createCategoryController.handle);
+
 categoriesRoutes.get("/", ensureAutheticated, listCategoryController.handle);
+
 categoriesRoutes.post(
   "/import",
+
   ensureAutheticated,
+
   upload.single("file"),
+
   importCategoryController.handle
 );
 
