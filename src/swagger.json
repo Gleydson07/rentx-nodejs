@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "RentalX Docuemtation",
+    "title": "RentalX Documentation",
     "description": "This is an API Rent",
     "version": "1.0.0",
     "contact": {
@@ -79,6 +79,33 @@
         }
       }
     },
+    "/categories/import": {
+      "post": {
+        "tags": ["Category"],
+        "summary": "Upload a new category",
+        "description": "Upload a new category",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
     "/specifications": {
       "post": {
         "tags": ["Specification"],
@@ -145,6 +172,52 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Create a user", 
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json":{
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "John Doe",
+                    "required": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "userjohn",
+                    "required": true
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john@doe.com",
+                    "required": true
+                  },
+                  "driver_license": {
+                    "type": "string",
+                    "example": "AC56B1235CF35",
+                    "required": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "User already exists"
           }
         }
       }

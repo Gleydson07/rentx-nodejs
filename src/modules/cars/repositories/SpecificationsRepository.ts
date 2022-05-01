@@ -1,9 +1,9 @@
 import { getRepository, Repository } from "typeorm";
 
 import { Specification } from "../entities/Specification";
-import { ISpecificationRepository } from "./ISpecificationRepository";
+import { ISpecificationsRepository } from "./ISpecificationsRepository";
 
-class SpecificationRepository implements ISpecificationRepository {
+class SpecificationsRepository implements ISpecificationsRepository {
   private repository: Repository<Specification>;
   constructor() {
     this.repository = getRepository(Specification);
@@ -31,4 +31,4 @@ class SpecificationRepository implements ISpecificationRepository {
   }
 }
 
-export { SpecificationRepository };
+export { SpecificationsRepository };
