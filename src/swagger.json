@@ -221,6 +221,81 @@
           }
         }
       }
+    },
+    "/users/avatar": {
+      "patch": {
+        "tags": ["User"],
+        "summary": "Upload an avatar",
+        "description": "Upload a new avatar",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": ["Authetication"],
+        "summary": "Create a session", 
+        "description": "Create a new session",
+        "requestBody": {
+          "content": {
+            "application/json":{
+              "schema": {
+                "type": "object",
+                "properties": {                  
+                  "email": {
+                    "type": "string",
+                    "example": "john@doe.com",
+                    "required": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "userjohn",
+                    "required": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "User already exists"
+          }
+        }
+      }
     }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "jwt"
+      }
+    }
+  },
+  "security": {
+    "bearerAuth": ["/categories"]
   }
 }
